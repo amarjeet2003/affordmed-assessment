@@ -9,7 +9,6 @@ import (
 func SetupRouter() *mux.Router {
 	router := mux.NewRouter()
 
-	// Define routes
 	router.HandleFunc("/categories/{categoryname}/products", controllers.GetProducts).Methods("GET")
 	router.HandleFunc("/categories/{categoryname}/products/{productid}", controllers.GetProductByID).Methods("GET")
 

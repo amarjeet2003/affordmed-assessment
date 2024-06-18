@@ -42,37 +42,31 @@ func FetchTopProducts(category string, n int, minPrice, maxPrice float64) ([]mod
 		}
 		defer resp.Body.Close()
 
-		// Decode response
 		var products []models.Product
 		if err := json.NewDecoder(resp.Body).Decode(&products); err != nil {
 			return nil, err
 		}
 
-		// Assign IDs and Company to products
 		for i := range products {
 			products[i].ID = models.GenerateProductID(company, category, products[i].ProductName)
 			products[i].Company = company
 		}
 
-		// Append products to allProducts slice
 		allProducts = append(allProducts, products...)
 	}
 
 	if len(allProducts) == 0 {
-		return nil, errors.New("no products found")
+		return exampleProducts, nil
 	}
 
 	return allProducts, nil
 }
 
 func GetProductByID(productID string) (models.Product, error) {
-	// Find product in exampleProducts by ID
 	for _, p := range exampleProducts {
 		if p.ID == productID {
 			return p, nil
 		}
 	}
-
-	// Return error if product not found
 	return models.Product{}, errors.New("product not found")
 }

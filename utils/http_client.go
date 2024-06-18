@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-const BaseURL = "http://localhost:8081/test/companies/"
+const BaseURL = "http://localhost:8080/test/companies/"
 
 var httpClient = &http.Client{
 	Timeout: 10 * time.Second,

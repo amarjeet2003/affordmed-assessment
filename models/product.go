@@ -13,6 +13,5 @@ type Product struct {
 }
 
 func GenerateProductID(company, category, productName string) string {
-	// Generate custom ID
 	return fmt.Sprintf("%s-%s-%s", company, category, productName)
 }
